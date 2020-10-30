@@ -10,9 +10,9 @@ import {
 
 import Category from './Category';
 
-@Entity('Transactions')
+@Entity('transactions')
 class Transaction {
-  @PrimaryGeneratedColumn('id')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -24,9 +24,12 @@ class Transaction {
   @Column('decimal')
   value: number;
 
+  @Column()
+  category_id: string;
+
   @ManyToOne(() => Category)
   @JoinColumn({ name: 'category_id' })
-  category_id: string;
+  category: Category;
 
   @CreateDateColumn()
   created_at: Date;
